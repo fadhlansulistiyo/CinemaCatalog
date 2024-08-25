@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CinemaCatalog</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_explore">Explore</string>
+    <string name="menu_watchlist">Watchlist</string>
+    <string name="menu_profile">Profile</string>
 </resources>
