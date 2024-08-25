@@ -13,12 +13,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.fadhlansulistiyo.cinemacatalog.R
 import com.fadhlansulistiyo.cinemacatalog.ui.navigation.NavigationItem
 import com.fadhlansulistiyo.cinemacatalog.ui.navigation.Screen
+import com.fadhlansulistiyo.cinemacatalog.ui.theme.customFontFamily
 
 @Composable
 fun BottomBar(
@@ -35,7 +40,7 @@ fun BottomBar(
             NavigationItem(
                 title = stringResource(R.string.menu_home),
                 icon = Icons.Default.Home,
-                screen = Screen.Home
+                screen = Screen.Home,
             ),
             NavigationItem(
                 title = stringResource(R.string.menu_explore),
@@ -62,7 +67,9 @@ fun BottomBar(
                     )
                 },
                 label = {
-                    Text(item.title)
+                    Text(
+                        item.title,
+                    )
                 },
                 selected = currentRoute == item.screen.route,
                 onClick = {
