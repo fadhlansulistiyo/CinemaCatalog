@@ -6,24 +6,22 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.fadhlansulistiyo.cinemacatalog.R
 import com.fadhlansulistiyo.cinemacatalog.ui.navigation.NavigationItem
 import com.fadhlansulistiyo.cinemacatalog.ui.navigation.Screen
-import com.fadhlansulistiyo.cinemacatalog.ui.theme.customFontFamily
+import com.fadhlansulistiyo.cinemacatalog.ui.theme.*
 
 @Composable
 fun BottomBar(
@@ -31,7 +29,8 @@ fun BottomBar(
     modifier: Modifier = Modifier
 ) {
     NavigationBar(
-        modifier = modifier
+        modifier = modifier,
+        containerColor = MaterialTheme.colorScheme.background,
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
@@ -81,6 +80,13 @@ fun BottomBar(
                         launchSingleTop = true
                     }
                 },
+                colors = NavigationBarItemDefaults.colors(
+                    selectedIconColor = md_theme_primary_light,
+                    unselectedIconColor = md_theme_secondaryContainer_light,
+                    selectedTextColor = md_theme_primary_light,
+                    unselectedTextColor = md_theme_secondaryContainer_light,
+                    indicatorColor = md_theme_secondary_light
+                )
             )
         }
     }

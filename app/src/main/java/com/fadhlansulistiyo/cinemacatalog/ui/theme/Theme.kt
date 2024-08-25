@@ -1,36 +1,39 @@
 package com.fadhlansulistiyo.cinemacatalog.ui.theme
 
-import android.app.Activity
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+val LightColorScheme = lightColorScheme(
+    primary = md_theme_primary_light,
+    onPrimary = md_theme_onPrimary_light,
+    primaryContainer = md_theme_primaryContainer_light,
+    onPrimaryContainer = md_theme_onPrimaryContainer_light,
+    secondary = md_theme_secondary_light,
+    onSecondary = md_theme_onSecondary_light,
+    secondaryContainer = md_theme_secondaryContainer_light,
+    onSecondaryContainer = md_theme_onSecondaryContainer_light,
+    tertiary = md_theme_tertiary_light,
+    onTertiary = md_theme_onTertiary_light,
+    tertiaryContainer = md_theme_tertiaryContainer_light,
+    onTertiaryContainer = md_theme_onTertiaryContainer_light
 )
 
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+val DarkColorScheme = darkColorScheme(
+    primary = md_theme_primary_dark,
+    onPrimary = md_theme_onPrimary_dark,
+    primaryContainer = md_theme_primaryContainer_dark,
+    onPrimaryContainer = md_theme_onPrimaryContainer_dark,
+    secondary = md_theme_secondary_dark,
+    onSecondary = md_theme_onSecondary_dark,
+    secondaryContainer = md_theme_secondaryContainer_dark,
+    onSecondaryContainer = md_theme_onSecondaryContainer_dark,
+    tertiary = md_theme_tertiary_dark,
+    onTertiary = md_theme_onTertiary_dark,
+    tertiaryContainer = md_theme_tertiaryContainer_dark,
+    onTertiaryContainer = md_theme_onTertiaryContainer_dark
 )
 
 @Composable
