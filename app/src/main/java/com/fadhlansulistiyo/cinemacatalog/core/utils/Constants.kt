@@ -14,4 +14,8 @@ object Constants {
     const val NETWORK_ERROR = "Network error."
     const val UNKNOWN_ERROR = "Unknown error."
     const val NA = "N/A"
+
+    const val NOW_PLAYING = "Now Playing"
+    const val POPULAR_TV = "Popular TV"
+    const val POPULAR_PEOPLE = "Popular People"
 }

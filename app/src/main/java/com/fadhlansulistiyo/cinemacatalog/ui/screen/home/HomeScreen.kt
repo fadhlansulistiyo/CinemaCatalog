@@ -2,18 +2,15 @@ package com.fadhlansulistiyo.cinemacatalog.ui.screen.home
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.LazyPagingItems
-import com.fadhlansulistiyo.cinemacatalog.ui.components.MovieListScreen
+import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.NOW_PLAYING
+import com.fadhlansulistiyo.cinemacatalog.ui.components.NowPlayingList
+import com.fadhlansulistiyo.cinemacatalog.ui.components.SectionText
 
 @Composable
 fun HomeScreen(
@@ -23,15 +20,10 @@ fun HomeScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .verticalScroll(rememberScrollState())
     ) {
-        Text(
-            text = "Now Playing",
-            style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-
-        MovieListScreen(navigateToDetails = navigateToDetails)
+        SectionText(NOW_PLAYING)
+        NowPlayingList(navigateToDetails = navigateToDetails)
     }
 }
 

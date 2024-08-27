@@ -1,6 +1,7 @@
 package com.fadhlansulistiyo.cinemacatalog.ui.main
 
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,6 +17,7 @@ import androidx.navigation.compose.rememberNavController
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.home.HomeScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.navigation.Screen
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true, device = Devices.PIXEL_7_PRO)
 @Composable
 fun CinLogApp(
@@ -26,6 +28,11 @@ fun CinLogApp(
     val currentRoute = navBackStackEntry?.destination?.route
 
     Scaffold(
+        topBar = {
+            if (currentRoute != Screen.DetailMovie.route) {
+                HomeTopAppBar()
+            }
+        },
         bottomBar = {
             if (currentRoute != Screen.DetailMovie.route) {
                 BottomBar(navController)
