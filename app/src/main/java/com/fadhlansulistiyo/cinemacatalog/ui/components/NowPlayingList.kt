@@ -6,20 +6,21 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
+import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.fadhlansulistiyo.cinemacatalog.core.domain.model.Movie
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.home.HomeViewModel
 
 @Composable
 fun NowPlayingList(
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel = hiltViewModel(),
+    nowPlayingMovies: LazyPagingItems<Movie>,
     navigateToDetails: (Int) -> Unit,
 ) {
-    val nowPlayingMovies = viewModel.nowPlayingMovies.collectAsLazyPagingItems()
-
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         contentPadding = PaddingValues(horizontal = 8.dp),
@@ -45,10 +46,6 @@ fun NowPlayingList(
             }
 
             nowPlayingMovies.loadState.refresh is LoadState.Error -> {
-                Log.d(
-                    "MovieListScreen",
-                    "Error: ${nowPlayingMovies.loadState.refresh as LoadState.Error}"
-                )
                 val error = nowPlayingMovies.loadState.refresh as LoadState.Error
                 item {
                     ErrorItem(
@@ -59,10 +56,6 @@ fun NowPlayingList(
             }
 
             nowPlayingMovies.loadState.append is LoadState.Error -> {
-                Log.d(
-                    "MovieListScreen",
-                    "Error: ${nowPlayingMovies.loadState.append as LoadState.Error}"
-                )
                 val error = nowPlayingMovies.loadState.append as LoadState.Error
                 item {
                     ErrorItem(

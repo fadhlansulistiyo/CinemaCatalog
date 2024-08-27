@@ -16,9 +16,9 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.home.HomeScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.navigation.Screen
+import com.fadhlansulistiyo.cinemacatalog.ui.theme.CinemaCatalogTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(showBackground = true, device = Devices.PIXEL_7_PRO)
 @Composable
 fun CinLogApp(
     modifier: Modifier = Modifier,
@@ -61,3 +61,10 @@ fun CinLogApp(
     }
 }
 
+@Preview(showBackground = true, device = Devices.PIXEL_7_PRO)
+@Composable
+private fun CinLogAppPreview() {
+    CinemaCatalogTheme {
+        CinLogApp()
+    }
+}
