@@ -13,7 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.fadhlansulistiyo.cinemacatalog.ui.home.HomeScreen
+import com.fadhlansulistiyo.cinemacatalog.ui.screen.home.HomeScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.navigation.Screen
 
 @Preview(showBackground = true, device = Devices.PIXEL_7_PRO)
