@@ -22,8 +22,10 @@ fun HomeScreen(
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
     ) {
-        SectionText(NOW_PLAYING)
-        NowPlayingList(navigateToDetails = navigateToDetails)
+        HomeSection(
+            title = NOW_PLAYING,
+            content = { NowPlayingList(navigateToDetails = navigateToDetails) }
+        )
     }
 }
 
