@@ -15,7 +15,7 @@ object Constants {
     const val UNKNOWN_ERROR = "Unknown error."
     const val NA = "N/A"
 
-    const val NOW_PLAYING = "Now Playing"
-    const val POPULAR_TV = "Popular TV"
+    const val NOW_PLAYING = "Now Playing Movies"
+    const val TOP_RATED_TV = "Top Rated TV"
     const val POPULAR_PEOPLE = "Popular People"
 }

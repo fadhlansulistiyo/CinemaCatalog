@@ -2,7 +2,7 @@ package com.fadhlansulistiyo.cinemacatalog.core.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class DetailMovieResponse(
+data class DetailMovieDTO(
 
     @field:SerializedName("id")
     val id: Int,
@@ -23,13 +23,13 @@ data class DetailMovieResponse(
     val releaseDate: String? = null,
 
     @field:SerializedName("genres")
-    val genres: List<GenresResponse>? = emptyList(),
+    val genres: List<GenresDTO>? = emptyList(),
 
     @field:SerializedName("poster_path")
     val posterPath: String? = null,
 
     @field:SerializedName("production_companies")
-    val productionCompanies: List<ProductionCompaniesResponse>? = emptyList(),
+    val productionCompanies: List<ProductionCompaniesDTO>? = emptyList(),
 
     @field:SerializedName("vote_average")
     val voteAverage: Double? = null

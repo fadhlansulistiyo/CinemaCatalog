@@ -1,21 +1,21 @@
 package com.fadhlansulistiyo.cinemacatalog.core.utils.mapper
 
-import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.GenresResponse
-import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.ProductionCompaniesResponse
+import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.GenresDTO
+import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.ProductionCompaniesDTO
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.Genres
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.ProductionCompanies
 import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.NA
 
 object BaseMapper {
 
-    fun mapGenresResponseToDomain(input: GenresResponse?): Genres {
+    fun mapGenresResponseToDomain(input: GenresDTO?): Genres {
         return Genres(
             id = input?.id ?: 0,
             name = input?.name ?: NA
         )
     }
 
-    fun mapProductionCompaniesResponseToDomain(input: ProductionCompaniesResponse?): ProductionCompanies {
+    fun mapProductionCompaniesResponseToDomain(input: ProductionCompaniesDTO?): ProductionCompanies {
         return ProductionCompanies(
             id = input?.id ?: 0,
             name = input?.name ?: NA

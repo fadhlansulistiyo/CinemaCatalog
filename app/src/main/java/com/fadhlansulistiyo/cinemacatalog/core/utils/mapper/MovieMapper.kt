@@ -1,9 +1,8 @@
 package com.fadhlansulistiyo.cinemacatalog.core.utils.mapper
 
-import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.CastResponse
-import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.DetailMovieResponse
-import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.MovieResponse
-import com.fadhlansulistiyo.cinemacatalog.core.domain.model.Cast
+import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.CastDTO
+import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.DetailMovieDTO
+import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.MovieDTO
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.DetailMovie
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.Movie
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.MovieCast
@@ -11,7 +10,7 @@ import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.NA
 import com.fadhlansulistiyo.cinemacatalog.core.utils.mapper.BaseMapper.mapGenresResponseToDomain
 import com.fadhlansulistiyo.cinemacatalog.core.utils.mapper.BaseMapper.mapProductionCompaniesResponseToDomain
 
-fun MovieResponse.toDomainModel(): Movie {
+fun MovieDTO.toDomainModel(): Movie {
     return Movie(
         id = this.id,
         title = this.title.orEmpty(),
@@ -22,7 +21,7 @@ fun MovieResponse.toDomainModel(): Movie {
     )
 }
 
-fun DetailMovieResponse.toDomainModel(): DetailMovie {
+fun DetailMovieDTO.toDomainModel(): DetailMovie {
     return DetailMovie(
         id = this.id,
         title = this.title ?: NA,
@@ -37,7 +36,7 @@ fun DetailMovieResponse.toDomainModel(): DetailMovie {
     )
 }
 
-fun CastResponse.toDomainModel(): MovieCast {
+fun CastDTO.toDomainModel(): MovieCast {
     return MovieCast(
         id = this.id,
         castId = this.castId ?: 0,

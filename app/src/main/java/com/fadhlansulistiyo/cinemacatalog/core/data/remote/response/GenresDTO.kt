@@ -2,7 +2,7 @@ package com.fadhlansulistiyo.cinemacatalog.core.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class GenresResponse(
+data class GenresDTO(
 
 	@field:SerializedName("id")
 	val id: Int,

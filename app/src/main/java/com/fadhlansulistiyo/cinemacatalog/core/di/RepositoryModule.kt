@@ -1,7 +1,9 @@
 package com.fadhlansulistiyo.cinemacatalog.core.di
 
 import com.fadhlansulistiyo.cinemacatalog.core.data.repository.MovieRepository
+import com.fadhlansulistiyo.cinemacatalog.core.data.repository.TvRepository
 import com.fadhlansulistiyo.cinemacatalog.core.domain.repository.IMovieRepository
+import com.fadhlansulistiyo.cinemacatalog.core.domain.repository.ITvRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,9 +16,10 @@ abstract class RepositoryModule {
     @Binds
     abstract fun provideMovieRepository(movieRepository: MovieRepository): IMovieRepository
 
-   /* @Binds
+    @Binds
     abstract fun provideTvRepository(tvRepository: TvRepository): ITvRepository
 
+   /*
     @Binds
     abstract fun providePeopleRepository(peopleRepository: PeopleRepository): IPeopleRepository
 

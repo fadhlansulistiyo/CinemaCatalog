@@ -1,8 +1,9 @@
 package com.fadhlansulistiyo.cinemacatalog.core.data.remote.network
 
-import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.DetailMovieResponse
-import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.ListMovieResponse
-import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.MovieCreditsResponse
+import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.DetailMovieDTO
+import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.ListMovieDTO
+import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.ListTvDTO
+import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.MovieCreditsDTO
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -11,20 +12,23 @@ interface ApiService {
     @GET("movie/now_playing?language=en-US&page=1")
     suspend fun getNowPlaying(
         @Query("page") page: Int = 0,
-    ): ListMovieResponse
+    ): ListMovieDTO
 
     @GET("movie/{movie_id}")
     suspend fun getDetailMovie(
         @Path("movie_id") movieId: Int
-    ): DetailMovieResponse
+    ): DetailMovieDTO
 
     @GET("movie/{movie_id}/credits?language=en-US")
     suspend fun getMovieCredits(
         @Path("movie_id") movieId: Int
-    ): MovieCreditsResponse
+    ): MovieCreditsDTO
+
+    @GET("tv/top_rated?language=en-US")
+    suspend fun getTopRatedTv(): ListTvDTO
 
     /*@GET("tv/airing_today?language=en-US&page=1")
-    suspend fun getAiringTodayTv(): ListTvResponse
+    suspend fun getAiringTodayTv(): ListTvDTO
 
     @GET("trending/person/week")
     suspend fun getTrendingPeople(): ListPeopleResponse

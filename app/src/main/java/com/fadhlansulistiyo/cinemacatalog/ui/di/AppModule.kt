@@ -2,6 +2,8 @@ package com.fadhlansulistiyo.cinemacatalog.ui.di
 
 import com.fadhlansulistiyo.cinemacatalog.core.domain.usecase.MovieInteractor
 import com.fadhlansulistiyo.cinemacatalog.core.domain.usecase.MovieUseCase
+import com.fadhlansulistiyo.cinemacatalog.core.domain.usecase.TvInteractor
+import com.fadhlansulistiyo.cinemacatalog.core.domain.usecase.TvUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,4 +17,9 @@ abstract class AppModule {
     @Binds
     @ViewModelScoped
     abstract fun provideMovieUseCase(movieInteractor: MovieInteractor): MovieUseCase
+
+    @Binds
+    @ViewModelScoped
+    abstract fun provideTvUseCase(tvInteractor: TvInteractor): TvUseCase
+
 }
