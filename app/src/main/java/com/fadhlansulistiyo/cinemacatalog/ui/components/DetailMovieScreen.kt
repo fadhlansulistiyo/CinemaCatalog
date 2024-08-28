@@ -253,7 +253,7 @@ fun DetailMovieContent(
             ) {
                 items(detailMovie.cast.size) { index ->
                     val cast = detailMovie.cast[index]
-                    CastItem(
+                    CastList(
                         name = cast.name,
                         profilePath = cast.profilePath,
                         character = cast.character
@@ -304,17 +304,15 @@ fun SectionTitle(
 }
 
 @Composable
-fun CastItem(
+fun CastList(
     name: String,
+    profilePath: String,
     character: String,
-    profilePath: String
 ) {
-    MediaItem(
-        imageUrl = "$IMAGE_URL_ORIGINAL$profilePath",
-        title = name,
-        subtitle = character,
-        showSubtitle = true,
-        showRating = false,
+    CastItem(
+        profilePath = "$IMAGE_URL$profilePath",
+        name = name,
+        character = character,
         onClick = {},
         modifier = Modifier
     )
