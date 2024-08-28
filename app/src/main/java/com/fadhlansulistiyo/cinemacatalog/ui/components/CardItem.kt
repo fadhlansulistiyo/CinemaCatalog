@@ -5,10 +5,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,11 +27,13 @@ import com.fadhlansulistiyo.cinemacatalog.R
 
 @Composable
 fun MediaItem(
+    modifier: Modifier = Modifier,
     imageUrl: String,
     title: String,
-    modifier: Modifier = Modifier,
+    subtitle: String? = null,
     onClick: () -> Unit,
     showRating: Boolean = false,
+    showSubtitle: Boolean = false,
     rating: String? = null,
 ) {
     Column(
@@ -38,16 +42,21 @@ fun MediaItem(
             .wrapContentHeight()
             .clickable(onClick = onClick)
     ) {
-        Image(
-            painter = rememberAsyncImagePainter(
-                model = imageUrl
-            ),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
+        Card(
+            shape = MaterialTheme.shapes.medium,
+            modifier = modifier
                 .height(200.dp)
-                .clip(MaterialTheme.shapes.medium)
-        )
+        ) {
+            Image(
+                painter = rememberAsyncImagePainter(
+                    model = imageUrl
+                ),
+                contentDescription = null,
+                contentScale = ContentScale.FillBounds,
+                modifier = Modifier
+                    .fillMaxSize()
+            )
+        }
         Spacer(modifier = Modifier.height(4.dp))
         Text(
             text = title,
@@ -79,6 +88,19 @@ fun MediaItem(
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier
                 )
+            }
+            if (showSubtitle) {
+                Spacer(modifier = Modifier.height(2.dp))
+                if (subtitle != null) {
+                    Text(
+                        text = subtitle,
+                        fontSize = 13.sp,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier
+                    )
+                }
             }
         }
     }

@@ -10,10 +10,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.fadhlansulistiyo.cinemacatalog.ui.components.DetailMovieScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.home.HomeScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.navigation.Screen
 import com.fadhlansulistiyo.cinemacatalog.ui.theme.CinemaCatalogTheme
@@ -46,7 +49,11 @@ fun CinLogApp(
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(Screen.Home.route) {
-                HomeScreen()
+                HomeScreen(
+                    navigateToDetails = { movieId ->
+                        navController.navigate(Screen.DetailMovie.createRoute(movieId))
+                    }
+                )
             }
             composable(Screen.Explore.route) {
                 Text(text = "Explore Screen")
@@ -56,6 +63,18 @@ fun CinLogApp(
             }
             composable(Screen.Profile.route) {
                 Text(text = "Profile Screen")
+            }
+            composable(
+                route = Screen.DetailMovie.route,
+                arguments = listOf(navArgument("movieId") { type = NavType.IntType })
+            ) {
+                val movieId = it.arguments?.getInt("movieId") ?: -1
+                DetailMovieScreen(
+                    movieId = movieId,
+                    navigateBack = {
+                        navController.navigateUp()
+                    }
+                )
             }
         }
     }

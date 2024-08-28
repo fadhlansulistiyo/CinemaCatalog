@@ -1,5 +1,6 @@
 package com.fadhlansulistiyo.cinemacatalog.ui.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyRow
@@ -26,7 +27,8 @@ fun NowPlayingList(
             movie?.let {
                 NowPlayingItem(
                     movie = it,
-                    onClick = { navigateToDetails(movie.id) }
+                    modifier = Modifier
+                        .clickable { navigateToDetails(it.id) }
                 )
             }
         }

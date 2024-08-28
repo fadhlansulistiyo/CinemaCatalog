@@ -26,7 +26,6 @@ import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.IMAGE_URL_ORIGINA
 fun NowPlayingItem(
     movie: Movie,
     modifier: Modifier = Modifier,
-    onClick: () -> Unit,
 ) {
     val imageUrl = "$IMAGE_URL_ORIGINAL${movie.backdropPath}"
 
@@ -35,7 +34,6 @@ fun NowPlayingItem(
         modifier = modifier
             .width(350.dp)
             .height(200.dp)
-            .clickable(onClick = onClick)
     ) {
         Box {
             Image(

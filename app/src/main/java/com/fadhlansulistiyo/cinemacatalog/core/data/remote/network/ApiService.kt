@@ -15,11 +15,6 @@ interface ApiService {
         @Query("page") page: Int = 0,
     ): ListMovieDTO
 
-    @GET("movie/{movie_id}")
-    suspend fun getDetailMovie(
-        @Path("movie_id") movieId: Int
-    ): DetailMovieDTO
-
     @GET("movie/{movie_id}/credits?language=en-US")
     suspend fun getMovieCredits(
         @Path("movie_id") movieId: Int
@@ -30,6 +25,11 @@ interface ApiService {
 
     @GET("trending/person/week")
     suspend fun getTrendingPeople(): ListPeopleDTO
+
+    @GET("movie/{movie_id}")
+    suspend fun getDetailMovie(
+        @Path("movie_id") movieId: Int
+    ): DetailMovieDTO
 
     /*@GET("tv/airing_today?language=en-US&page=1")
     suspend fun getAiringTodayTv(): ListTvDTO

@@ -18,4 +18,9 @@ object Constants {
     const val NOW_PLAYING = "Now Playing Movies"
     const val TOP_RATED_TV = "Top Rated TV"
     const val TRENDING_PEOPLE = "Trending People"
+
+    const val GENRES = "Genres"
+    const val OVERVIEW = "Overview"
+    const val PRODUCTION_COMPANIES = "Production Companies"
+    const val CAST = "Cast"
 }
