@@ -39,54 +39,12 @@ fun TopRatedTvItem(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
 ) {
-    val imageUrl = "$IMAGE_URL${tv.posterPath}"
-
-    Column(
-        modifier = modifier
-            .width(135.dp)
-            .wrapContentHeight()
-    ) {
-        Image(
-            painter = rememberAsyncImagePainter(
-                model = imageUrl
-            ),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .height(200.dp)
-                .clip(MaterialTheme.shapes.medium)
-        )
-        Spacer(modifier = Modifier.height(4.dp))
-        Text(
-            text = tv.name,
-            fontSize = 13.sp,
-            style = MaterialTheme.typography.titleSmall,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-            modifier = Modifier
-                .align(alignment = Alignment.Start)
-                .padding(start = 4.dp)
-                .width(135.dp)
-        )
-        Spacer(modifier = Modifier.height(2.dp))
-        Row(
-            modifier = Modifier
-                .align(alignment = Alignment.Start)
-                .padding(start = 4.dp)
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_star_rate_12dp),
-                contentDescription = "Star Icon",
-                modifier = Modifier
-            )
-            Spacer(modifier = Modifier.width(2.dp))
-            Text(
-                text = tv.voteAverage.toVoteAverageFormat(1),
-                fontSize = 13.sp,
-                style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier
-            )
-        }
-    }
-
+    MediaItem(
+        imageUrl = "$IMAGE_URL${tv.posterPath}",
+        title = tv.name,
+        modifier = modifier,
+        onClick = onClick,
+        showRating = true,
+        rating = tv.voteAverage.toVoteAverageFormat(1)
+    )
 }
