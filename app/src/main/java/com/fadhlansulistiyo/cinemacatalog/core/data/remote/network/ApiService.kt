@@ -2,6 +2,7 @@ package com.fadhlansulistiyo.cinemacatalog.core.data.remote.network
 
 import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.DetailMovieDTO
 import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.ListMovieDTO
+import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.ListPeopleDTO
 import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.ListTvDTO
 import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.MovieCreditsDTO
 import retrofit2.http.GET
@@ -27,11 +28,11 @@ interface ApiService {
     @GET("tv/top_rated?language=en-US")
     suspend fun getTopRatedTv(): ListTvDTO
 
+    @GET("trending/person/week")
+    suspend fun getTrendingPeople(): ListPeopleDTO
+
     /*@GET("tv/airing_today?language=en-US&page=1")
     suspend fun getAiringTodayTv(): ListTvDTO
-
-    @GET("trending/person/week")
-    suspend fun getTrendingPeople(): ListPeopleResponse
 
     @GET("tv/{series_id}")
     suspend fun getDetailTv(

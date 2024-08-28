@@ -17,5 +17,5 @@ object Constants {
 
     const val NOW_PLAYING = "Now Playing Movies"
     const val TOP_RATED_TV = "Top Rated TV"
-    const val POPULAR_PEOPLE = "Popular People"
+    const val TRENDING_PEOPLE = "Trending People"
 }
