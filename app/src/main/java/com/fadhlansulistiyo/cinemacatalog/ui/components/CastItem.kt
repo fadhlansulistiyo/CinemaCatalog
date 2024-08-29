@@ -24,6 +24,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.fadhlansulistiyo.cinemacatalog.R
+import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.IMAGE_URL
+
+@Composable
+fun CastList(
+    name: String,
+    profilePath: String,
+    character: String,
+) {
+    CastItem(
+        profilePath = "$IMAGE_URL$profilePath",
+        name = name,
+        character = character,
+        onClick = {},
+        modifier = Modifier
+    )
+}
 
 @Composable
 fun CastItem(
@@ -48,9 +64,7 @@ fun CastItem(
         ) {
             // profile path
             Image(
-                painter = rememberAsyncImagePainter(
-                    model = profilePath
-                ),
+                painter = loadImagePainter(imageUrl = profilePath),
                 contentDescription = null,
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier

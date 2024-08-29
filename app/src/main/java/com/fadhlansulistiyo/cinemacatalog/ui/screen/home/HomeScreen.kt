@@ -46,7 +46,8 @@ fun HomeScreen(
             content = {
                 TopRatedTvList(
                     topRatedTvState = topRatedTvState,
-                    navigateToTvDetail = navigateToTvDetail
+                    navigateToTvDetail = navigateToTvDetail,
+                    onRetry = { viewModel.retryData() }
                 )
             }
         )
@@ -55,7 +56,8 @@ fun HomeScreen(
             content = {
                 TrendingPeopleList(
                     trendingPeopleState = trendingPeopleState,
-                    navigateToDetails = navigateToPeopleDetail
+                    navigateToDetails = navigateToPeopleDetail,
+                    onRetry = {viewModel.retryData()}
                 )
             }
         )

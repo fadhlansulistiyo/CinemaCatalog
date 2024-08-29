@@ -54,6 +54,7 @@ import com.fadhlansulistiyo.cinemacatalog.core.utils.toFormattedDateString
 import com.fadhlansulistiyo.cinemacatalog.core.utils.toFormattedRuntime
 import com.fadhlansulistiyo.cinemacatalog.core.utils.toVoteAverageFormat
 import com.fadhlansulistiyo.cinemacatalog.ui.components.CastItem
+import com.fadhlansulistiyo.cinemacatalog.ui.components.CastList
 import com.fadhlansulistiyo.cinemacatalog.ui.components.ErrorItem
 import com.fadhlansulistiyo.cinemacatalog.ui.components.LoadingItem
 import com.fadhlansulistiyo.cinemacatalog.ui.components.loadImagePainter
@@ -74,12 +75,15 @@ fun DetailMovieScreen(
         is Resource.Error -> {
             ErrorItem(
                 message = movieDetails?.message ?: UNKNOWN_ERROR,
-                onRetry = { viewModel.fetchMovieDetails(movieId) }
+                onRetry = { viewModel.fetchMovieDetails(movieId) },
+                modifier = Modifier.fillMaxSize()
             )
         }
 
         is Resource.Loading -> {
-            LoadingItem()
+            LoadingItem(
+                modifier = Modifier.fillMaxSize()
+            )
         }
 
         is Resource.Success -> {
@@ -308,20 +312,5 @@ fun SectionTitle(
         color = MaterialTheme.colorScheme.primary,
         modifier = Modifier
             .padding(start = 16.dp, top = 8.dp)
-    )
-}
-
-@Composable
-fun CastList(
-    name: String,
-    profilePath: String,
-    character: String,
-) {
-    CastItem(
-        profilePath = "$IMAGE_URL$profilePath",
-        name = name,
-        character = character,
-        onClick = {},
-        modifier = Modifier
     )
 }

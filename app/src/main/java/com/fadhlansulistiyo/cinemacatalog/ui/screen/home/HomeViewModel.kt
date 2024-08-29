@@ -35,11 +35,17 @@ class HomeViewModel @Inject constructor(
     val trendingPeople: StateFlow<Resource<List<People>>> get() = _trendingPeople
 
     init {
-        getTopRatedTvShows()
-        getTrendingPeople()
+        fetchTopRatedTvShows()
+        fetchTrendingPeople()
     }
 
-    private fun getTopRatedTvShows() {
+    fun retryData() {
+        fetchTopRatedTvShows()
+        fetchTrendingPeople()
+
+    }
+
+    private fun fetchTopRatedTvShows() {
         viewModelScope.launch {
             tvUseCase.getTopRatedTv()
                 .collect { resource ->
@@ -48,7 +54,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun getTrendingPeople() {
+    private fun fetchTrendingPeople() {
         viewModelScope.launch {
             peopleUseCase.getTrendingPeople()
                 .collect { resource ->

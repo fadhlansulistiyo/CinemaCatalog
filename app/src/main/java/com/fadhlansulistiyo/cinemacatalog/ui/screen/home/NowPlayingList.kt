@@ -37,11 +37,11 @@ fun NowPlayingList(
 
         when {
             nowPlayingMovies.loadState.refresh is LoadState.Loading -> {
-                item { LoadingItem() }
+                item { LoadingItem(modifier = Modifier.fillParentMaxSize()) }
             }
 
             nowPlayingMovies.loadState.append is LoadState.Loading -> {
-                item { LoadingItem() }
+                item { LoadingItem(modifier = Modifier.fillParentMaxSize()) }
             }
 
             nowPlayingMovies.loadState.refresh is LoadState.Error -> {
@@ -49,7 +49,8 @@ fun NowPlayingList(
                 item {
                     ErrorItem(
                         message = error.error.localizedMessage ?: "Unknown error",
-                        onRetry = { nowPlayingMovies.retry() }
+                        onRetry = { nowPlayingMovies.retry() },
+                        modifier = Modifier.fillParentMaxSize()
                     )
                 }
             }

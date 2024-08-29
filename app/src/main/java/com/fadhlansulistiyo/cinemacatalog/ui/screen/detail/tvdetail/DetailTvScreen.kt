@@ -39,7 +39,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.compose.rememberAsyncImagePainter
 import com.fadhlansulistiyo.cinemacatalog.R
 import com.fadhlansulistiyo.cinemacatalog.core.data.Resource
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.DetailTvWithCast
@@ -53,10 +52,10 @@ import com.fadhlansulistiyo.cinemacatalog.core.utils.toEpisodeString
 import com.fadhlansulistiyo.cinemacatalog.core.utils.toFormattedDateString
 import com.fadhlansulistiyo.cinemacatalog.core.utils.toSeasonString
 import com.fadhlansulistiyo.cinemacatalog.core.utils.toVoteAverageFormat
+import com.fadhlansulistiyo.cinemacatalog.ui.components.CastList
 import com.fadhlansulistiyo.cinemacatalog.ui.components.ErrorItem
 import com.fadhlansulistiyo.cinemacatalog.ui.components.LoadingItem
 import com.fadhlansulistiyo.cinemacatalog.ui.components.loadImagePainter
-import com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.moviedetail.CastList
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.moviedetail.SectionTitle
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.moviedetail.TextWithIcon
 
@@ -76,12 +75,15 @@ fun DetailTvScreen(
         is Resource.Error -> {
             ErrorItem(
                 message = tvDetails?.message ?: UNKNOWN_ERROR,
-                onRetry = { viewModel.fetchTvDetails(tvId) }
+                onRetry = { viewModel.fetchTvDetails(tvId) },
+                modifier = Modifier.fillMaxSize()
             )
         }
 
         is Resource.Loading -> {
-            LoadingItem()
+            LoadingItem(
+                modifier = Modifier.fillMaxSize()
+            )
         }
 
         is Resource.Success -> {

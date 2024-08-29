@@ -3,6 +3,7 @@ package com.fadhlansulistiyo.cinemacatalog.ui.screen.home
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
@@ -12,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.fadhlansulistiyo.cinemacatalog.core.data.Resource
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.Tv
+import com.fadhlansulistiyo.cinemacatalog.ui.components.ErrorItem
 import com.fadhlansulistiyo.cinemacatalog.ui.components.LoadingItem
 
 @Composable
@@ -19,6 +21,7 @@ fun TopRatedTvList(
     modifier: Modifier = Modifier,
     topRatedTvState: Resource<List<Tv>>,
     navigateToTvDetail: (Int) -> Unit,
+    onRetry: () -> Unit
 ) {
     when (topRatedTvState) {
         is Resource.Loading -> {
@@ -51,9 +54,10 @@ fun TopRatedTvList(
 
         is Resource.Error -> {
             topRatedTvState.message?.let {
-                Text(
-                    text = it,
-                    color = MaterialTheme.colorScheme.error
+                ErrorItem(
+                    message = it,
+                    onRetry = onRetry,
+                    modifier = Modifier.fillMaxSize()
                 )
             }
         }
