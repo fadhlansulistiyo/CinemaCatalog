@@ -13,6 +13,7 @@ import com.fadhlansulistiyo.cinemacatalog.core.domain.model.Movie
 import com.fadhlansulistiyo.cinemacatalog.core.domain.repository.IMovieRepository
 import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.UNKNOWN_ERROR
 import com.fadhlansulistiyo.cinemacatalog.core.utils.mapper.toDomainModel
+import com.fadhlansulistiyo.cinemacatalog.core.utils.mapper.toMovieDomainModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -44,7 +45,7 @@ class MovieRepository @Inject constructor(
                 detailResponse is ApiResponseResult.Success && castResponse is ApiResponseResult.Success -> {
                     val detail = detailResponse.data.toDomainModel()
                     val cast = castResponse.data.map {
-                        it.toDomainModel()
+                        it.toMovieDomainModel()
                     }
                     Resource.Success(DetailMovieWithCast(detail, cast))
                 }

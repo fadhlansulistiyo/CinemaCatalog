@@ -1,7 +1,6 @@
-package com.fadhlansulistiyo.cinemacatalog.ui.components
+package com.fadhlansulistiyo.cinemacatalog.ui.screen.home
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height

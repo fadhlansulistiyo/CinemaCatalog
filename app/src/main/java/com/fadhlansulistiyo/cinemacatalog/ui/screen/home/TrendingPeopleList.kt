@@ -1,4 +1,4 @@
-package com.fadhlansulistiyo.cinemacatalog.ui.components
+package com.fadhlansulistiyo.cinemacatalog.ui.screen.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -7,51 +7,47 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.fadhlansulistiyo.cinemacatalog.core.data.Resource
-import com.fadhlansulistiyo.cinemacatalog.core.domain.model.Tv
-import com.fadhlansulistiyo.cinemacatalog.ui.screen.home.HomeViewModel
+import com.fadhlansulistiyo.cinemacatalog.core.domain.model.People
+import com.fadhlansulistiyo.cinemacatalog.ui.components.LoadingItem
 
 @Composable
-fun TopRatedTvList(
+fun TrendingPeopleList(
     modifier: Modifier = Modifier,
-    topRatedTvState: Resource<List<Tv>>,
+    trendingPeopleState: Resource<List<People>>,
     navigateToDetails: (Int) -> Unit,
 ) {
-    when (topRatedTvState) {
+    when (trendingPeopleState) {
         is Resource.Loading -> {
             LoadingItem()
         }
 
         is Resource.Success -> {
-            val tvShows = topRatedTvState.data
+            val trendingPeople = trendingPeopleState.data
 
-            if (!tvShows.isNullOrEmpty()) {
+            if (!trendingPeople.isNullOrEmpty()) {
                 LazyRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     contentPadding = PaddingValues(horizontal = 8.dp),
                     modifier = modifier
                 ) {
-                    items(tvShows) { tv ->
-                        TopRatedTvItem(
-                            tv = tv,
-                            onClick = { navigateToDetails(tv.id) }
+                    items(trendingPeople) { people ->
+                        TrendingPeopleItem(
+                            people = people,
                         )
                     }
                 }
             } else {
                 Text(
-                    text = "No top-rated TV shows available",
+                    text = "No trending people available",
                 )
             }
         }
 
         is Resource.Error -> {
-            topRatedTvState.message?.let {
+            trendingPeopleState.message?.let {
                 Text(
                     text = it,
                     color = MaterialTheme.colorScheme.error

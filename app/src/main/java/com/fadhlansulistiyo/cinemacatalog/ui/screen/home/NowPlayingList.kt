@@ -1,4 +1,4 @@
-package com.fadhlansulistiyo.cinemacatalog.ui.components
+package com.fadhlansulistiyo.cinemacatalog.ui.screen.home
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -10,12 +10,14 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.Movie
+import com.fadhlansulistiyo.cinemacatalog.ui.components.ErrorItem
+import com.fadhlansulistiyo.cinemacatalog.ui.components.LoadingItem
 
 @Composable
 fun NowPlayingList(
     modifier: Modifier = Modifier,
     nowPlayingMovies: LazyPagingItems<Movie>,
-    navigateToDetails: (Int) -> Unit,
+    navigateToMovieDetail: (Int) -> Unit,
 ) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -28,7 +30,7 @@ fun NowPlayingList(
                 NowPlayingItem(
                     movie = it,
                     modifier = Modifier
-                        .clickable { navigateToDetails(it.id) }
+                        .clickable { navigateToMovieDetail(it.id) }
                 )
             }
         }

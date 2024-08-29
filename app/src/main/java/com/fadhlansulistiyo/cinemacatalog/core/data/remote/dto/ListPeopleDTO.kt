@@ -1,8 +1,8 @@
-package com.fadhlansulistiyo.cinemacatalog.core.data.remote.response
+package com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class ListTvDTO(
+data class ListPeopleDTO(
 
 	@field:SerializedName("page")
 	val page: Int,
@@ -11,7 +11,7 @@ data class ListTvDTO(
 	val totalPages: Int,
 
 	@field:SerializedName("results")
-	val results: List<TvDTO>,
+	val results: List<PeopleDTO>,
 
 	@field:SerializedName("total_results")
 	val totalResults: Int

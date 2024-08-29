@@ -13,15 +13,15 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.NOW_PLAYING
 import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.TOP_RATED_TV
 import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.TRENDING_PEOPLE
-import com.fadhlansulistiyo.cinemacatalog.ui.components.NowPlayingList
-import com.fadhlansulistiyo.cinemacatalog.ui.components.TopRatedTvList
-import com.fadhlansulistiyo.cinemacatalog.ui.components.TrendingPeopleList
 
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel(),
-    navigateToDetails: (Int) -> Unit = {}
+    navigateToMovieDetail: (Int) -> Unit = {},
+    navigateToTvDetail: (Int) -> Unit = {},
+    navigateToPeopleDetail: (Int) -> Unit = {},
+
 ) {
     val nowPlayingMovies = viewModel.nowPlayingMovies.collectAsLazyPagingItems()
     val topRatedTvState by viewModel.topRatedTv.collectAsState()
@@ -37,7 +37,7 @@ fun HomeScreen(
             content = {
                 NowPlayingList(
                     nowPlayingMovies = nowPlayingMovies,
-                    navigateToDetails = navigateToDetails
+                    navigateToMovieDetail = navigateToMovieDetail
                 )
             }
         )
@@ -46,7 +46,7 @@ fun HomeScreen(
             content = {
                 TopRatedTvList(
                     topRatedTvState = topRatedTvState,
-                    navigateToDetails = navigateToDetails
+                    navigateToTvDetail = navigateToTvDetail
                 )
             }
         )
@@ -55,7 +55,7 @@ fun HomeScreen(
             content = {
                 TrendingPeopleList(
                     trendingPeopleState = trendingPeopleState,
-                    navigateToDetails = navigateToDetails
+                    navigateToDetails = navigateToPeopleDetail
                 )
             }
         )

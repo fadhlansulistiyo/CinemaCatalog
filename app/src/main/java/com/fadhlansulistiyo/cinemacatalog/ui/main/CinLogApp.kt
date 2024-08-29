@@ -16,9 +16,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.fadhlansulistiyo.cinemacatalog.ui.components.DetailMovieScreen
+import com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.moviedetail.DetailMovieScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.home.HomeScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.navigation.Screen
+import com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.tvdetail.DetailTvScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.theme.CinemaCatalogTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -50,9 +51,15 @@ fun CinLogApp(
         ) {
             composable(Screen.Home.route) {
                 HomeScreen(
-                    navigateToDetails = { movieId ->
+                    navigateToMovieDetail = { movieId ->
                         navController.navigate(Screen.DetailMovie.createRoute(movieId))
-                    }
+                    },
+                    navigateToTvDetail = { tvId ->
+                        navController.navigate(Screen.DetailTv.createRoute(tvId))
+                    },
+                    /*navigateToPersonDetail = { personId ->
+                        navController.navigate(Screen.DetailPerson.createRoute(personId))
+                    }*/
                 )
             }
             composable(Screen.Explore.route) {
@@ -71,6 +78,18 @@ fun CinLogApp(
                 val movieId = it.arguments?.getInt("movieId") ?: -1
                 DetailMovieScreen(
                     movieId = movieId,
+                    navigateBack = {
+                        navController.navigateUp()
+                    }
+                )
+            }
+            composable(
+                route = Screen.DetailTv.route,
+                arguments = listOf(navArgument("tvId") { type = NavType.IntType })
+            ) {
+                val tvId = it.arguments?.getInt("tvId") ?: -1
+                DetailTvScreen(
+                    tvId = tvId,
                     navigateBack = {
                         navController.navigateUp()
                     }

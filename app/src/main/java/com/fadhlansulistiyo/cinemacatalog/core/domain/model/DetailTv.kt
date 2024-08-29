@@ -12,5 +12,4 @@ data class DetailTv(
     val productionCompanies: List<ProductionCompanies>,
     val voteAverage: Double,
     val name: String,
-    val seasons: List<Seasons>,
 )

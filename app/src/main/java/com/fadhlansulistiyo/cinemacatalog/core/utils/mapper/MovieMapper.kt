@@ -1,8 +1,8 @@
 package com.fadhlansulistiyo.cinemacatalog.core.utils.mapper
 
-import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.CastDTO
-import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.DetailMovieDTO
-import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.MovieDTO
+import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.CastDTO
+import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.DetailMovieDTO
+import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.MovieDTO
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.DetailMovie
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.Movie
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.MovieCast
@@ -36,7 +36,7 @@ fun DetailMovieDTO.toDomainModel(): DetailMovie {
     )
 }
 
-fun CastDTO.toDomainModel(): MovieCast {
+fun CastDTO.toMovieDomainModel(): MovieCast {
     return MovieCast(
         id = this.id,
         castId = this.castId ?: 0,

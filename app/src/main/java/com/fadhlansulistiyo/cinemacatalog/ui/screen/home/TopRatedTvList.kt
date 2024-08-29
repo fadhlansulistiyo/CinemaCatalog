@@ -1,5 +1,6 @@
-package com.fadhlansulistiyo.cinemacatalog.ui.components
+package com.fadhlansulistiyo.cinemacatalog.ui.screen.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyRow
@@ -10,44 +11,46 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.fadhlansulistiyo.cinemacatalog.core.data.Resource
-import com.fadhlansulistiyo.cinemacatalog.core.domain.model.People
+import com.fadhlansulistiyo.cinemacatalog.core.domain.model.Tv
+import com.fadhlansulistiyo.cinemacatalog.ui.components.LoadingItem
 
 @Composable
-fun TrendingPeopleList(
+fun TopRatedTvList(
     modifier: Modifier = Modifier,
-    trendingPeopleState: Resource<List<People>>,
-    navigateToDetails: (Int) -> Unit,
+    topRatedTvState: Resource<List<Tv>>,
+    navigateToTvDetail: (Int) -> Unit,
 ) {
-    when (trendingPeopleState) {
+    when (topRatedTvState) {
         is Resource.Loading -> {
             LoadingItem()
         }
 
         is Resource.Success -> {
-            val trendingPeople = trendingPeopleState.data
+            val tvShows = topRatedTvState.data
 
-            if (!trendingPeople.isNullOrEmpty()) {
+            if (!tvShows.isNullOrEmpty()) {
                 LazyRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     contentPadding = PaddingValues(horizontal = 8.dp),
                     modifier = modifier
                 ) {
-                    items(trendingPeople) { people ->
-                        TrendingPeopleItem(
-                            people = people,
-                            onClick = { navigateToDetails(people.id) }
+                    items(tvShows) { tv ->
+                        TopRatedTvItem(
+                            tv = tv,
+                            modifier = Modifier
+                                .clickable { navigateToTvDetail(tv.id) }
                         )
                     }
                 }
             } else {
                 Text(
-                    text = "No trending people available",
+                    text = "No top-rated TV shows available",
                 )
             }
         }
 
         is Resource.Error -> {
-            trendingPeopleState.message?.let {
+            topRatedTvState.message?.let {
                 Text(
                     text = it,
                     color = MaterialTheme.colorScheme.error

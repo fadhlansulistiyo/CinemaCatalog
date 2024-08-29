@@ -1,4 +1,4 @@
-package com.fadhlansulistiyo.cinemacatalog.ui.components
+package com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.moviedetail
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -53,7 +53,9 @@ import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.UNKNOWN_ERROR
 import com.fadhlansulistiyo.cinemacatalog.core.utils.toFormattedDateString
 import com.fadhlansulistiyo.cinemacatalog.core.utils.toFormattedRuntime
 import com.fadhlansulistiyo.cinemacatalog.core.utils.toVoteAverageFormat
-import com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.moviedetail.DetailMovieViewModel
+import com.fadhlansulistiyo.cinemacatalog.ui.components.CastItem
+import com.fadhlansulistiyo.cinemacatalog.ui.components.ErrorItem
+import com.fadhlansulistiyo.cinemacatalog.ui.components.LoadingItem
 
 @Composable
 fun DetailMovieScreen(

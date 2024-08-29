@@ -1,10 +1,12 @@
 package com.fadhlansulistiyo.cinemacatalog.core.data.remote.network
 
-import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.DetailMovieDTO
-import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.ListMovieDTO
-import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.ListPeopleDTO
-import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.ListTvDTO
-import com.fadhlansulistiyo.cinemacatalog.core.data.remote.response.MovieCreditsDTO
+import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.DetailMovieDTO
+import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.DetailTvDTO
+import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.ListMovieDTO
+import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.ListPeopleDTO
+import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.ListTvDTO
+import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.MovieCreditsDTO
+import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.TvCreditsDTO
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -31,13 +33,18 @@ interface ApiService {
         @Path("movie_id") movieId: Int
     ): DetailMovieDTO
 
-    /*@GET("tv/airing_today?language=en-US&page=1")
-    suspend fun getAiringTodayTv(): ListTvDTO
-
     @GET("tv/{series_id}")
     suspend fun getDetailTv(
         @Path("series_id") seriesId: Int
-    ): DetailTvResponse
+    ): DetailTvDTO
+
+    @GET("tv/{series_id}/credits")
+    suspend fun getTvCredits(
+        @Path("series_id") seriesId: Int
+    ): TvCreditsDTO
+
+    /*@GET("tv/airing_today?language=en-US&page=1")
+    suspend fun getAiringTodayTv(): ListTvDTO
 
     @GET("person/{person_id}")
     suspend fun getDetailPeople(
@@ -56,13 +63,6 @@ interface ApiService {
         @Query("page") page: Int = 0,
         @Query("language") language: String = "en"
     ): ListPeopleResponse
-
-
-
-    @GET("tv/{series_id}/credits")
-    suspend fun getTvCredits(
-        @Path("series_id") seriesId: Int
-    ): TvCreditsResponse
 
     @GET("person/{person_id}/combined_credits")
     suspend fun getCredits(
