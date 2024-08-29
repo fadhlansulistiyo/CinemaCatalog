@@ -5,10 +5,10 @@ sealed class Screen(val route: String) {
     object Explore : Screen("explore")
     object Watchlist : Screen("watchlist")
     object Profile : Screen("profile")
-    object DetailMovie : Screen("home/{movieId}") {
-        fun createRoute(movieId: Int) = "home/$movieId"
+    object DetailMovie : Screen("home/movie/{movieId}") {
+        fun createRoute(movieId: Int) = "home/movie/$movieId"
     }
-    object DetailTv : Screen("home/{tvId}") {
-        fun createRoute(tvId: Int) = "home/$tvId"
+    object DetailTv : Screen("home/tv/{tvId}") {
+        fun createRoute(tvId: Int) = "home/tv/$tvId"
     }
 }

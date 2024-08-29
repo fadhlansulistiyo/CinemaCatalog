@@ -33,12 +33,12 @@ fun CinLogApp(
 
     Scaffold(
         topBar = {
-            if (currentRoute != Screen.DetailMovie.route) {
+            if (currentRoute != Screen.DetailMovie.route && currentRoute != Screen.DetailTv.route) {
                 HomeTopAppBar()
             }
         },
         bottomBar = {
-            if (currentRoute != Screen.DetailMovie.route) {
+            if (currentRoute != Screen.DetailMovie.route && currentRoute != Screen.DetailTv.route) {
                 BottomBar(navController)
             }
         },
@@ -57,9 +57,6 @@ fun CinLogApp(
                     navigateToTvDetail = { tvId ->
                         navController.navigate(Screen.DetailTv.createRoute(tvId))
                     },
-                    /*navigateToPersonDetail = { personId ->
-                        navController.navigate(Screen.DetailPerson.createRoute(personId))
-                    }*/
                 )
             }
             composable(Screen.Explore.route) {
