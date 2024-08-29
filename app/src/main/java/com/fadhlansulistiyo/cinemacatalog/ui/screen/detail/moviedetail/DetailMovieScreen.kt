@@ -56,6 +56,7 @@ import com.fadhlansulistiyo.cinemacatalog.core.utils.toVoteAverageFormat
 import com.fadhlansulistiyo.cinemacatalog.ui.components.CastItem
 import com.fadhlansulistiyo.cinemacatalog.ui.components.ErrorItem
 import com.fadhlansulistiyo.cinemacatalog.ui.components.LoadingItem
+import com.fadhlansulistiyo.cinemacatalog.ui.components.loadImagePainter
 
 @Composable
 fun DetailMovieScreen(
@@ -108,8 +109,10 @@ fun DetailMovieContent(
         Box(
             modifier = Modifier.fillMaxWidth()
         ) {
+            val backdropUrl = "$IMAGE_URL_ORIGINAL${detailMovie.detail.backdropPath}"
+
             Image(
-                painter = rememberAsyncImagePainter(model = "$IMAGE_URL_ORIGINAL${detailMovie.detail.backdropPath}"),
+                painter = loadImagePainter(imageUrl = backdropUrl),
                 contentDescription = stringResource(R.string.movie_backdrop),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -157,9 +160,11 @@ fun DetailMovieContent(
                 .offset(y = (-50).dp),
             verticalAlignment = Alignment.Top
         ) {
+            val posterUrl = "$IMAGE_URL_ORIGINAL${detailMovie.detail.posterPath}"
+
             // Poster
             Image(
-                painter = rememberAsyncImagePainter(model = "$IMAGE_URL_ORIGINAL${detailMovie.detail.posterPath}"),
+                painter = loadImagePainter(imageUrl = posterUrl),
                 contentDescription = stringResource(R.string.content_desc_poster),
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier
@@ -211,6 +216,7 @@ fun DetailMovieContent(
                     fontSize = 14.sp,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
+                    style = MaterialTheme.typography.titleSmall,
                     fontFamily = FontFamily(Font(R.font.urbanist_medium)),
                     modifier = Modifier
                         .padding(start = 8.dp, top = 4.dp, end = 8.dp)

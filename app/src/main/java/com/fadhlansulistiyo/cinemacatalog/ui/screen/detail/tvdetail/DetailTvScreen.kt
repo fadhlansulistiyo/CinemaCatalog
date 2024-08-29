@@ -55,6 +55,7 @@ import com.fadhlansulistiyo.cinemacatalog.core.utils.toSeasonString
 import com.fadhlansulistiyo.cinemacatalog.core.utils.toVoteAverageFormat
 import com.fadhlansulistiyo.cinemacatalog.ui.components.ErrorItem
 import com.fadhlansulistiyo.cinemacatalog.ui.components.LoadingItem
+import com.fadhlansulistiyo.cinemacatalog.ui.components.loadImagePainter
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.moviedetail.CastList
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.moviedetail.SectionTitle
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.moviedetail.TextWithIcon
@@ -111,8 +112,10 @@ fun DetailTvContent(
         Box(
             modifier = Modifier.fillMaxWidth()
         ) {
+            val backdropUrl = "$IMAGE_URL_ORIGINAL${detailTv.detail.backdropPath}"
+
             Image(
-                painter = rememberAsyncImagePainter(model = "$IMAGE_URL_ORIGINAL${detailTv.detail.backdropPath}"),
+                painter = loadImagePainter(imageUrl = backdropUrl),
                 contentDescription = stringResource(R.string.movie_backdrop),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -160,9 +163,11 @@ fun DetailTvContent(
                 .offset(y = (-50).dp),
             verticalAlignment = Alignment.Top
         ) {
+            val posterUrl = "$IMAGE_URL_ORIGINAL${detailTv.detail.posterPath}"
+
             // Poster
             Image(
-                painter = rememberAsyncImagePainter(model = "$IMAGE_URL_ORIGINAL${detailTv.detail.posterPath}"),
+                painter = loadImagePainter(imageUrl = posterUrl),
                 contentDescription = stringResource(R.string.content_desc_poster),
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier
@@ -222,6 +227,7 @@ fun DetailTvContent(
                     fontSize = 14.sp,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
+                    style = MaterialTheme.typography.titleSmall,
                     fontFamily = FontFamily(Font(R.font.urbanist_medium)),
                     modifier = Modifier
                         .padding(start = 8.dp, top = 4.dp, end = 8.dp)
