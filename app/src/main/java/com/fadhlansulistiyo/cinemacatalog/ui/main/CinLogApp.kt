@@ -19,6 +19,7 @@ import androidx.navigation.navArgument
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.moviedetail.DetailMovieScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.home.HomeScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.navigation.Screen
+import com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.peopledetail.DetailPeopleScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.tvdetail.DetailTvScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.theme.CinemaCatalogTheme
 
@@ -33,12 +34,20 @@ fun CinLogApp(
 
     Scaffold(
         topBar = {
-            if (currentRoute != Screen.DetailMovie.route && currentRoute != Screen.DetailTv.route) {
+            if (
+                currentRoute != Screen.DetailMovie.route
+                && currentRoute != Screen.DetailTv.route
+                && currentRoute != Screen.DetailPeople.route
+            ) {
                 HomeTopAppBar()
             }
         },
         bottomBar = {
-            if (currentRoute != Screen.DetailMovie.route && currentRoute != Screen.DetailTv.route) {
+            if (
+                currentRoute != Screen.DetailMovie.route
+                && currentRoute != Screen.DetailTv.route
+                && currentRoute != Screen.DetailPeople.route
+            ) {
                 BottomBar(navController)
             }
         },
@@ -57,6 +66,9 @@ fun CinLogApp(
                     navigateToTvDetail = { tvId ->
                         navController.navigate(Screen.DetailTv.createRoute(tvId))
                     },
+                    navigateToPeopleDetail = { peopleId ->
+                        navController.navigate(Screen.DetailPeople.createRoute(peopleId))
+                    }
                 )
             }
             composable(Screen.Explore.route) {
@@ -92,6 +104,19 @@ fun CinLogApp(
                     }
                 )
             }
+            composable(
+                route = Screen.DetailPeople.route,
+                arguments = listOf(navArgument("peopleId") { type = NavType.IntType })
+            ) {
+                val peopleId = it.arguments?.getInt("peopleId") ?: -1
+                DetailPeopleScreen(
+                    peopleId = peopleId,
+                    navigateBack = {
+                        navController.navigateUp()
+                    }
+                )
+            }
+
         }
     }
 }

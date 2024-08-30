@@ -26,7 +26,7 @@ fun DetailMovieScreen(
     navigateBack: () -> Unit,
     viewModel: DetailMovieViewModel = hiltViewModel()
 ) {
-    val movieDetails by viewModel.movieDetails.observeAsState()
+    val movieDetails by viewModel.detailMovie.observeAsState()
 
     LaunchedEffect(Unit) {
         viewModel.fetchMovieDetails(movieId)
@@ -87,8 +87,12 @@ fun DetailMovieContent(
             )
         },
         genres = detailMovie.detail.genres.joinToString { it.name },
-        overview = detailMovie.detail.overview,
-        productionCompanies = detailMovie.detail.productionCompanies.joinToString(" • ") { it.name },
+        isCinema = true,
+        description = detailMovie.detail.overview,
+        productionCompanies = detailMovie.detail.productionCompanies.joinToString(
+            " • ",
+            " • "
+        ) { it.name },
         castList = detailMovie.cast,
         onBackClick = onBackClick
     )

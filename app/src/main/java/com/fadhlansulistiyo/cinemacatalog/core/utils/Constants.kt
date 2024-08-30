@@ -21,6 +21,11 @@ object Constants {
 
     const val GENRES = "Genres"
     const val OVERVIEW = "Overview"
+    const val BIOGRAPHY = "Biography"
     const val PRODUCTION_COMPANIES = "Production Companies"
     const val CAST = "Cast"
+
+    const val KNOWN_FOR = "Known For"
+    const val BIRTHDAY = "Birthday"
+    const val PLACE_OF_BIRTH = "Place of Birth"
 }

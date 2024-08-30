@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.fadhlansulistiyo.cinemacatalog.R
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.Cast
+import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.BIOGRAPHY
 import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.CAST
 import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.GENRES
 import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.OVERVIEW
@@ -49,10 +50,11 @@ fun DetailContent(
     posterUrl: String,
     title: String,
     additionalInfo: @Composable () -> Unit,
-    genres: String,
-    overview: String,
-    productionCompanies: String,
-    castList: List<Cast>,
+    genres: String? = null,
+    isCinema: Boolean = false,
+    description: String,
+    productionCompanies: String? = null,
+    castList: List<Cast> = emptyList(),
     onBackClick: () -> Unit,
 ) {
     Column(
@@ -151,22 +153,25 @@ fun DetailContent(
 
                 additionalInfo()
 
-                SectionTitle(
-                    text = GENRES,
-                    modifier = Modifier
-                        .padding(start = 8.dp, top = 6.dp)
-                )
-                Text(
-                    text = genres,
-                    fontSize = 14.sp,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.titleSmall,
-                    fontFamily = FontFamily(Font(R.font.urbanist_medium)),
-                    modifier = Modifier
-                        .padding(start = 8.dp, top = 4.dp, end = 8.dp)
-                        .fillMaxWidth()
-                )
+                // genres
+                genres?.let {
+                    SectionTitle(
+                        text = GENRES,
+                        modifier = Modifier
+                            .padding(start = 8.dp, top = 6.dp)
+                    )
+                    Text(
+                        text = it,
+                        fontSize = 14.sp,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                        style = MaterialTheme.typography.titleSmall,
+                        fontFamily = FontFamily(Font(R.font.urbanist_medium)),
+                        modifier = Modifier
+                            .padding(start = 8.dp, top = 4.dp, end = 8.dp)
+                            .fillMaxWidth()
+                    )
+                }
             }
         }
 
@@ -175,50 +180,57 @@ fun DetailContent(
                 .fillMaxWidth()
                 .offset(y = (-50).dp)
         ) {
+            val sec: String = if (isCinema) OVERVIEW else BIOGRAPHY
             SectionTitle(
-                text = OVERVIEW,
+                text = sec,
                 modifier = Modifier
                     .padding(start = 16.dp, top = 16.dp)
             )
             Text(
-                text = overview,
+                text = description,
                 fontSize = 14.sp,
                 modifier = Modifier
                     .padding(horizontal = 16.dp, vertical = 4.dp)
                     .fillMaxWidth()
             )
 
-            SectionTitle(
-                text = PRODUCTION_COMPANIES,
-                modifier = Modifier
-                    .padding(start = 16.dp, top = 8.dp)
-            )
-            Text(
-                text = productionCompanies,
-                fontSize = 14.sp,
-                modifier = Modifier
-                    .padding(horizontal = 16.dp, vertical = 4.dp)
-                    .fillMaxWidth()
-            )
+            productionCompanies?.let {
+                SectionTitle(
+                    text = PRODUCTION_COMPANIES,
+                    modifier = Modifier
+                        .padding(start = 16.dp, top = 8.dp)
+                )
+                Text(
+                    text = it,
+                    fontSize = 14.sp,
+                    modifier = Modifier
+                        .padding(horizontal = 16.dp, vertical = 4.dp)
+                        .fillMaxWidth()
+                )
+            }
 
-            SectionTitle(
-                text = CAST,
-                modifier = Modifier
-                    .padding(start = 16.dp, top = 8.dp)
-            )
-            LazyRow(
-                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                items(castList.size) { index ->
-                    val cast = castList[index]
-                    CastList(
-                        name = cast.name,
-                        profilePath = cast.profilePath,
-                        character = cast.character
-                    )
+            // cast list
+            if (castList.isNotEmpty()) {
+                SectionTitle(
+                    text = CAST,
+                    modifier = Modifier
+                        .padding(start = 16.dp, top = 8.dp)
+                )
+                LazyRow(
+                    contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    items(castList.size) { index ->
+                        val cast = castList[index]
+                        CastList(
+                            name = cast.name,
+                            profilePath = cast.profilePath,
+                            character = cast.character
+                        )
+                    }
                 }
             }
+
         }
     }
 }

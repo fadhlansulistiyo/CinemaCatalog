@@ -28,7 +28,7 @@ fun DetailTvScreen(
     navigateBack: () -> Unit,
     viewModel: DetailTvViewModel = hiltViewModel()
 ) {
-    val tvDetails by viewModel.tvDetails.observeAsState()
+    val tvDetails by viewModel.detailTv.observeAsState()
 
     LaunchedEffect(Unit) {
         viewModel.fetchTvDetails(tvId)
@@ -96,8 +96,12 @@ fun DetailTvContent(
             )
         },
         genres = detailTv.detail.genres.joinToString { it.name },
-        overview = detailTv.detail.overview,
-        productionCompanies = detailTv.detail.productionCompanies.joinToString(" • ") { it.name },
+        isCinema = true,
+        description = detailTv.detail.overview,
+        productionCompanies = detailTv.detail.productionCompanies.joinToString(
+            " • ",
+            " • "
+        ) { it.name },
         castList = detailTv.cast,
         onBackClick = onBackClick
     )

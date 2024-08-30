@@ -18,25 +18,25 @@ class DetailTvViewModel @Inject constructor(
     private val tvUseCase: TvUseCase
 ) : ViewModel() {
 
-    private val _tvDetails = MutableLiveData<Resource<DetailTvWithCast>>()
-    val tvDetails: LiveData<Resource<DetailTvWithCast>> = _tvDetails
+    private val _detailTv = MutableLiveData<Resource<DetailTvWithCast>>()
+    val detailTv: LiveData<Resource<DetailTvWithCast>> = _detailTv
 
     fun fetchTvDetails(tvId: Int) {
         viewModelScope.launch {
-            _tvDetails.value = Resource.Loading()
+            _detailTv.value = Resource.Loading()
             try {
                 val result = tvUseCase.getDetailTv(tvId)
                 if (result is Resource.Success) {
                     result.data?.let {
-                        _tvDetails.value = Resource.Success(it)
+                        _detailTv.value = Resource.Success(it)
                     } ?: run {
-                        _tvDetails.value = Resource.Error(DATA_IS_NULL)
+                        _detailTv.value = Resource.Error(DATA_IS_NULL)
                     }
                 } else {
-                    _tvDetails.value = Resource.Error(result.message ?: UNKNOWN_ERROR)
+                    _detailTv.value = Resource.Error(result.message ?: UNKNOWN_ERROR)
                 }
             } catch (e: Exception) {
-                _tvDetails.value = Resource.Error(e.message ?: UNKNOWN_ERROR)
+                _detailTv.value = Resource.Error(e.message ?: UNKNOWN_ERROR)
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.fadhlansulistiyo.cinemacatalog.ui.screen.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -39,6 +40,8 @@ fun TrendingPeopleList(
                     items(trendingPeople) { people ->
                         TrendingPeopleItem(
                             people = people,
+                            modifier = Modifier
+                                .clickable { navigateToDetails(people.id) }
                         )
                     }
                 }

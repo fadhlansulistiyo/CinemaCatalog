@@ -18,25 +18,25 @@ class DetailMovieViewModel @Inject constructor(
     private val movieUseCase: MovieUseCase
 ) : ViewModel() {
 
-    private val _movieDetails = MutableLiveData<Resource<DetailMovieWithCast>>()
-    val movieDetails: LiveData<Resource<DetailMovieWithCast>> = _movieDetails
+    private val _detailMovie = MutableLiveData<Resource<DetailMovieWithCast>>()
+    val detailMovie: LiveData<Resource<DetailMovieWithCast>> = _detailMovie
 
     fun fetchMovieDetails(movieId: Int) {
         viewModelScope.launch {
-            _movieDetails.value = Resource.Loading()
+            _detailMovie.value = Resource.Loading()
             try {
                 val result = movieUseCase.getDetailMovie(movieId)
                 if (result is Resource.Success) {
                     result.data?.let {
-                        _movieDetails.value = Resource.Success(it)
+                        _detailMovie.value = Resource.Success(it)
                     } ?: run {
-                        _movieDetails.value = Resource.Error(DATA_IS_NULL)
+                        _detailMovie.value = Resource.Error(DATA_IS_NULL)
                     }
                 } else {
-                    _movieDetails.value = Resource.Error(result.message ?: UNKNOWN_ERROR)
+                    _detailMovie.value = Resource.Error(result.message ?: UNKNOWN_ERROR)
                 }
             } catch (e: Exception) {
-                _movieDetails.value = Resource.Error(e.message ?: UNKNOWN_ERROR)
+                _detailMovie.value = Resource.Error(e.message ?: UNKNOWN_ERROR)
             }
         }
     }
