@@ -55,6 +55,7 @@ fun DetailContent(
     description: String,
     productionCompanies: String? = null,
     castList: List<Cast> = emptyList(),
+    additionalInfo2: @Composable () -> Unit = {},
     onBackClick: () -> Unit,
 ) {
     Column(
@@ -230,7 +231,9 @@ fun DetailContent(
                     }
                 }
             }
+            Spacer(modifier = Modifier.height(16.dp))
 
+            additionalInfo2()
         }
     }
 }

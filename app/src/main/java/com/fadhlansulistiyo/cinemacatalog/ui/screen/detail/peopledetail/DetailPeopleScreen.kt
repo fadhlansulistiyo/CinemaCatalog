@@ -1,8 +1,11 @@
 package com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.peopledetail
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,9 +29,12 @@ import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.KNOWN_FOR
 import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.PLACE_OF_BIRTH
 import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.UNKNOWN_ERROR
 import com.fadhlansulistiyo.cinemacatalog.core.utils.toFormattedDateString
+import com.fadhlansulistiyo.cinemacatalog.core.utils.toVoteAverageFormat
+import com.fadhlansulistiyo.cinemacatalog.ui.components.CastList
 import com.fadhlansulistiyo.cinemacatalog.ui.components.DetailContent
 import com.fadhlansulistiyo.cinemacatalog.ui.components.ErrorItem
 import com.fadhlansulistiyo.cinemacatalog.ui.components.LoadingItem
+import com.fadhlansulistiyo.cinemacatalog.ui.components.MediaItem
 import com.fadhlansulistiyo.cinemacatalog.ui.components.SectionTitle
 
 @Composable
@@ -134,6 +140,30 @@ fun DetailPeopleContent(
             )
         },
         description = detailPeople.detail.biography,
+        additionalInfo2 = {
+            // Known for movies
+            SectionTitle(
+                text = KNOWN_FOR,
+                modifier = Modifier
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
+            )
+            LazyRow(
+                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                val movieList = detailPeople.credits
+                items(movieList.size) { index ->
+                    val item = movieList[index]
+                    MediaItem(
+                        imageUrl = "$IMAGE_URL${item.posterPath}",
+                        title = item.title,
+                        showRating = true,
+                        rating = item.voteAverage.toVoteAverageFormat(1)
+                    )
+                }
+            }
+
+        },
         onBackClick = onBackClick
     )
 }
