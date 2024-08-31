@@ -4,8 +4,10 @@ import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.CastDTO
 import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.DetailMovieDTO
 import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.MovieDTO
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.DetailMovie
+import com.fadhlansulistiyo.cinemacatalog.core.domain.model.DetailMovieWithCast
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.Movie
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.MovieCast
+import com.fadhlansulistiyo.cinemacatalog.core.domain.model.WatchlistMovie
 import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.NA
 import com.fadhlansulistiyo.cinemacatalog.core.utils.mapper.BaseMapper.mapGenresResponseToDomain
 import com.fadhlansulistiyo.cinemacatalog.core.utils.mapper.BaseMapper.mapProductionCompaniesResponseToDomain
@@ -43,5 +45,15 @@ fun CastDTO.toMovieDomainModel(): MovieCast {
         name = this.name ?: NA,
         character = this.character ?: NA,
         profilePath = this.profilePath ?: "",
+    )
+}
+
+fun DetailMovieWithCast.toWatchlistMovieModel(): WatchlistMovie {
+    return WatchlistMovie(
+        id = this.detail.id,
+        title = this.detail.title,
+        posterPath = this.detail.posterPath,
+        releaseDate = this.detail.releaseDate,
+        voteAverage = this.detail.voteAverage
     )
 }

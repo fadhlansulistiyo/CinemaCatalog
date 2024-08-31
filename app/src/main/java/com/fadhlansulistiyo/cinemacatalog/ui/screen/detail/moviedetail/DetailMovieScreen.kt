@@ -12,6 +12,7 @@ import com.fadhlansulistiyo.cinemacatalog.core.data.Resource
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.DetailMovieWithCast
 import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.IMAGE_URL_ORIGINAL
 import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.UNKNOWN_ERROR
+import com.fadhlansulistiyo.cinemacatalog.core.utils.mapper.toWatchlistMovieModel
 import com.fadhlansulistiyo.cinemacatalog.core.utils.toFormattedDateString
 import com.fadhlansulistiyo.cinemacatalog.core.utils.toFormattedRuntime
 import com.fadhlansulistiyo.cinemacatalog.core.utils.toVoteAverageFormat
@@ -27,6 +28,7 @@ fun DetailMovieScreen(
     viewModel: DetailMovieViewModel = hiltViewModel()
 ) {
     val movieDetails by viewModel.detailMovie.observeAsState()
+    val isWatchlist by viewModel.isWatchlist.observeAsState()
 
     LaunchedEffect(Unit) {
         viewModel.fetchMovieDetails(movieId)
@@ -52,7 +54,13 @@ fun DetailMovieScreen(
             if (detailMovie != null) {
                 DetailMovieContent(
                     detailMovie = detailMovie,
-                    onBackClick = navigateBack
+                    onBackClick = navigateBack,
+                    isWatchlist = isWatchlist,
+                    onWatchlistClick = {
+                        viewModel.toggleWatchlistMovie(
+                            detailMovie.toWatchlistMovieModel()
+                        )
+                    }
                 )
             }
         }
@@ -64,6 +72,8 @@ fun DetailMovieScreen(
 @Composable
 fun DetailMovieContent(
     detailMovie: DetailMovieWithCast,
+    isWatchlist: Boolean? = null,
+    onWatchlistClick: () -> Unit = {},
     onBackClick: () -> Unit,
 ) {
     DetailContent(
@@ -94,6 +104,8 @@ fun DetailMovieContent(
             " • "
         ) { it.name },
         castList = detailMovie.cast,
+        isWatchlist = isWatchlist,
+        onWatchlistClick = onWatchlistClick,
         onBackClick = onBackClick
     )
 }

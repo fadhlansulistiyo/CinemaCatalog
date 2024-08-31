@@ -5,10 +5,14 @@ import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.DetailMovieDTO
 import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.DetailTvDTO
 import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.TvDTO
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.DetailMovie
+import com.fadhlansulistiyo.cinemacatalog.core.domain.model.DetailMovieWithCast
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.DetailTv
+import com.fadhlansulistiyo.cinemacatalog.core.domain.model.DetailTvWithCast
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.MovieCast
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.Tv
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.TvCast
+import com.fadhlansulistiyo.cinemacatalog.core.domain.model.WatchlistMovie
+import com.fadhlansulistiyo.cinemacatalog.core.domain.model.WatchlistTv
 import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.NA
 import com.fadhlansulistiyo.cinemacatalog.core.utils.mapper.BaseMapper.mapGenresResponseToDomain
 import com.fadhlansulistiyo.cinemacatalog.core.utils.mapper.BaseMapper.mapProductionCompaniesResponseToDomain
@@ -47,5 +51,15 @@ fun CastDTO.toTvDomainModel(): TvCast {
         name = this.name ?: NA,
         character = this.character ?: NA,
         profilePath = this.profilePath ?: "",
+    )
+}
+
+fun DetailTvWithCast.toWatchlistTvModel(): WatchlistTv {
+    return WatchlistTv(
+        id = this.detail.id,
+        name = this.detail.name,
+        posterPath = this.detail.posterPath,
+        firstAirDate = this.detail.firstAirDate,
+        voteAverage = this.detail.voteAverage
     )
 }

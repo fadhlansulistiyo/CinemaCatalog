@@ -13,6 +13,7 @@ import com.fadhlansulistiyo.cinemacatalog.core.data.Resource
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.DetailTvWithCast
 import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.IMAGE_URL_ORIGINAL
 import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.UNKNOWN_ERROR
+import com.fadhlansulistiyo.cinemacatalog.core.utils.mapper.toWatchlistTvModel
 import com.fadhlansulistiyo.cinemacatalog.core.utils.toEpisodeString
 import com.fadhlansulistiyo.cinemacatalog.core.utils.toFormattedDateString
 import com.fadhlansulistiyo.cinemacatalog.core.utils.toSeasonString
@@ -29,6 +30,7 @@ fun DetailTvScreen(
     viewModel: DetailTvViewModel = hiltViewModel()
 ) {
     val tvDetails by viewModel.detailTv.observeAsState()
+    val isWatchlist by viewModel.isWatchlist.observeAsState()
 
     LaunchedEffect(Unit) {
         viewModel.fetchTvDetails(tvId)
@@ -54,7 +56,13 @@ fun DetailTvScreen(
             if (detailTv != null) {
                 DetailTvContent(
                     detailTv = detailTv,
-                    onBackClick = navigateBack
+                    onBackClick = navigateBack,
+                    isWatchlist = isWatchlist,
+                    onWatchlistClick = {
+                        viewModel.toggleWatchlistTv(
+                            detailTv.toWatchlistTvModel()
+                        )
+                    }
                 )
             }
         }
@@ -66,6 +74,8 @@ fun DetailTvScreen(
 @Composable
 fun DetailTvContent(
     detailTv: DetailTvWithCast,
+    isWatchlist: Boolean? = null,
+    onWatchlistClick: () -> Unit = {},
     onBackClick: () -> Unit,
 ) {
     DetailContent(
@@ -103,6 +113,8 @@ fun DetailTvContent(
             " • "
         ) { it.name },
         castList = detailTv.cast,
+        isWatchlist = isWatchlist,
+        onWatchlistClick = onWatchlistClick,
         onBackClick = onBackClick
     )
 }

@@ -56,6 +56,8 @@ fun DetailContent(
     productionCompanies: String? = null,
     castList: List<Cast> = emptyList(),
     additionalInfo2: @Composable () -> Unit = {},
+    isWatchlist: Boolean? = null,
+    onWatchlistClick: () -> Unit = {},
     onBackClick: () -> Unit,
 ) {
     Column(
@@ -105,14 +107,17 @@ fun DetailContent(
 
             // Watchlist Button
             IconButton(
-                onClick = { /* Handle watchlist click */ },
+                onClick = onWatchlistClick,
                 modifier = Modifier
                     .size(50.dp)
                     .padding(top = 12.dp, end = 12.dp)
                     .align(Alignment.TopEnd)
             ) {
                 Icon(
-                    painter = painterResource(R.drawable.baseline_watchlist),
+                    painter = painterResource(
+                        if (isWatchlist == true) R.drawable.baseline_watchlist_filled
+                        else R.drawable.baseline_watchlist
+                    ),
                     contentDescription = null,
                     tint = Color.White
                 )
