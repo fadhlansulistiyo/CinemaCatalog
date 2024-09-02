@@ -16,12 +16,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
-import coil.compose.rememberAsyncImagePainter
-import coil.compose.rememberImagePainter
 import com.fadhlansulistiyo.cinemacatalog.R
 import com.fadhlansulistiyo.cinemacatalog.ui.components.EmptyState
 import com.fadhlansulistiyo.cinemacatalog.ui.components.SearchBar
@@ -37,7 +34,7 @@ fun ExploreScreen(
     val query = viewModel.query.collectAsState().value
 
     Column(
-        modifier = modifier
+        modifier = modifier.fillMaxSize()
     ) {
         SearchBar(
             query = query,

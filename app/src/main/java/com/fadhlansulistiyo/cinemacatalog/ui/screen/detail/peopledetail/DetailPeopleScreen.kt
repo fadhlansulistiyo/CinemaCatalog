@@ -4,9 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -32,7 +30,6 @@ import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.PLACE_OF_BIRTH
 import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.UNKNOWN_ERROR
 import com.fadhlansulistiyo.cinemacatalog.core.utils.toFormattedDateString
 import com.fadhlansulistiyo.cinemacatalog.core.utils.toVoteAverageFormat
-import com.fadhlansulistiyo.cinemacatalog.ui.components.CastList
 import com.fadhlansulistiyo.cinemacatalog.ui.components.DetailContent
 import com.fadhlansulistiyo.cinemacatalog.ui.components.ErrorItem
 import com.fadhlansulistiyo.cinemacatalog.ui.components.LoadingItem

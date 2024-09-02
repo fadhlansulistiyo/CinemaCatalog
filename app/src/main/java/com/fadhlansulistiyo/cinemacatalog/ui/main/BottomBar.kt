@@ -14,7 +14,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -22,7 +21,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.fadhlansulistiyo.cinemacatalog.R
 import com.fadhlansulistiyo.cinemacatalog.ui.navigation.NavigationItem
 import com.fadhlansulistiyo.cinemacatalog.ui.navigation.Screen
-import com.fadhlansulistiyo.cinemacatalog.ui.theme.*
 
 @Composable
 fun BottomBar(

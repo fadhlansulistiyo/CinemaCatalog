@@ -28,4 +28,5 @@ object Constants {
     const val KNOWN_FOR = "Known For"
     const val BIRTHDAY = "Birthday"
     const val PLACE_OF_BIRTH = "Place of Birth"
+    const val INVALID_ID = -1
 }

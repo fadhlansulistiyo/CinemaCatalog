@@ -3,7 +3,6 @@ package com.fadhlansulistiyo.cinemacatalog.ui.main
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -16,12 +15,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.moviedetail.DetailMovieScreen
-import com.fadhlansulistiyo.cinemacatalog.ui.screen.home.HomeScreen
+import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.INVALID_ID
 import com.fadhlansulistiyo.cinemacatalog.ui.navigation.Screen
+import com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.moviedetail.DetailMovieScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.peopledetail.DetailPeopleScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.tvdetail.DetailTvScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.explore.ExploreScreen
+import com.fadhlansulistiyo.cinemacatalog.ui.screen.home.HomeScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.profile.ProfileScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.watchlist.WatchlistScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.theme.CinemaCatalogTheme
@@ -37,24 +37,12 @@ fun CinLogApp(
 
     Scaffold(
         topBar = {
-            if (
-                currentRoute != Screen.DetailMovie.route
-                && currentRoute != Screen.DetailTv.route
-                && currentRoute != Screen.DetailPeople.route
-                && currentRoute != Screen.Explore.route
-                && currentRoute != Screen.Watchlist.route
-                && currentRoute != Screen.Profile.route
-
-            ) {
+            if (shouldShowTopBar(currentRoute)) {
                 HomeTopAppBar()
             }
         },
         bottomBar = {
-            if (
-                currentRoute != Screen.DetailMovie.route
-                && currentRoute != Screen.DetailTv.route
-                && currentRoute != Screen.DetailPeople.route
-            ) {
+            if (shouldShowBottomBar(currentRoute)) {
                 BottomBar(navController)
             }
         },
@@ -67,35 +55,21 @@ fun CinLogApp(
         ) {
             composable(Screen.Home.route) {
                 HomeScreen(
-                    navigateToMovieDetail = { movieId ->
-                        navController.navigate(Screen.DetailMovie.createRoute(movieId))
-                    },
-                    navigateToTvDetail = { tvId ->
-                        navController.navigate(Screen.DetailTv.createRoute(tvId))
-                    },
-                    navigateToPeopleDetail = { peopleId ->
-                        navController.navigate(Screen.DetailPeople.createRoute(peopleId))
-                    }
+                    navigateToMovieDetail = navigateToMovieDetail(navController),
+                    navigateToTvDetail = navigateToTvDetail(navController),
+                    navigateToPeopleDetail = navigateToPeopleDetail(navController)
                 )
             }
             composable(Screen.Explore.route) {
                 ExploreScreen(
-                    navigateToMovieDetail = { movieId ->
-                        navController.navigate(Screen.DetailMovie.createRoute(movieId))
-                    },
-                    navigateToTvDetail = { tvId ->
-                        navController.navigate(Screen.DetailTv.createRoute(tvId))
-                    }
+                    navigateToMovieDetail = navigateToMovieDetail(navController),
+                    navigateToTvDetail = navigateToTvDetail(navController)
                 )
             }
             composable(Screen.Watchlist.route) {
                 WatchlistScreen(
-                    navigateToMovieDetail = { movieId ->
-                        navController.navigate(Screen.DetailMovie.createRoute(movieId))
-                    },
-                    navigateToTvDetail = { tvId ->
-                        navController.navigate(Screen.DetailTv.createRoute(tvId))
-                    }
+                    navigateToMovieDetail = navigateToMovieDetail(navController),
+                    navigateToTvDetail = navigateToTvDetail(navController)
                 )
             }
             composable(Screen.Profile.route) {
@@ -105,41 +79,69 @@ fun CinLogApp(
                 route = Screen.DetailMovie.route,
                 arguments = listOf(navArgument("movieId") { type = NavType.IntType })
             ) {
-                val movieId = it.arguments?.getInt("movieId") ?: -1
+                val movieId = it.arguments?.getInt("movieId") ?: INVALID_ID
                 DetailMovieScreen(
                     movieId = movieId,
-                    navigateBack = {
-                        navController.navigateUp()
-                    }
+                    navigateBack = navController::navigateUp
                 )
             }
             composable(
                 route = Screen.DetailTv.route,
                 arguments = listOf(navArgument("tvId") { type = NavType.IntType })
             ) {
-                val tvId = it.arguments?.getInt("tvId") ?: -1
+                val tvId = it.arguments?.getInt("tvId") ?: INVALID_ID
                 DetailTvScreen(
                     tvId = tvId,
-                    navigateBack = {
-                        navController.navigateUp()
-                    }
+                    navigateBack = navController::navigateUp
                 )
             }
             composable(
                 route = Screen.DetailPeople.route,
                 arguments = listOf(navArgument("peopleId") { type = NavType.IntType })
             ) {
-                val peopleId = it.arguments?.getInt("peopleId") ?: -1
+                val peopleId = it.arguments?.getInt("peopleId") ?: INVALID_ID
                 DetailPeopleScreen(
                     peopleId = peopleId,
-                    navigateBack = {
-                        navController.navigateUp()
-                    }
+                    navigateBack = navController::navigateUp
                 )
             }
-
         }
     }
+}
+
+@Composable
+fun shouldShowTopBar(currentRoute: String?): Boolean {
+    return when (currentRoute) {
+        Screen.DetailMovie.route,
+        Screen.DetailTv.route,
+        Screen.DetailPeople.route,
+        Screen.Explore.route,
+        Screen.Watchlist.route,
+        Screen.Profile.route -> false
+        else -> true
+    }
+}
+
+@Composable
+fun shouldShowBottomBar(currentRoute: String?): Boolean {
+    return when (currentRoute) {
+        Screen.DetailMovie.route,
+        Screen.DetailTv.route,
+        Screen.DetailPeople.route -> false
+        else -> true
+    }
+}
+
+fun navigateToMovieDetail(navController: NavHostController): (Int) -> Unit = { movieId ->
+    navController.navigate(Screen.DetailMovie.createRoute(movieId))
+}
+
+fun navigateToTvDetail(navController: NavHostController): (Int) -> Unit = { tvId ->
+    navController.navigate(Screen.DetailTv.createRoute(tvId))
+}
+
+fun navigateToPeopleDetail(navController: NavHostController): (Int) -> Unit = { peopleId ->
+    navController.navigate(Screen.DetailPeople.createRoute(peopleId))
 }
 
 @Preview(showBackground = true, device = Devices.PIXEL_7_PRO)
