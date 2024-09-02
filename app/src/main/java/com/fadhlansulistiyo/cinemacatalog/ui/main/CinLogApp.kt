@@ -22,6 +22,7 @@ import com.fadhlansulistiyo.cinemacatalog.ui.navigation.Screen
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.peopledetail.DetailPeopleScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.tvdetail.DetailTvScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.explore.ExploreScreen
+import com.fadhlansulistiyo.cinemacatalog.ui.screen.profile.ProfileScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.watchlist.WatchlistScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.theme.CinemaCatalogTheme
 
@@ -98,7 +99,7 @@ fun CinLogApp(
                 )
             }
             composable(Screen.Profile.route) {
-                Text(text = "Profile Screen")
+                ProfileScreen()
             }
             composable(
                 route = Screen.DetailMovie.route,

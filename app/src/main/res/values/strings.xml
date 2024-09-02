@@ -10,4 +10,8 @@
     <string name="search_movie_tv">Search movies and TV shows…</string>
     <string name="explore_movies_message"><![CDATA[Explore your favorite movies & tv shows!]]></string>
     <string name="no_results_found">No results found</string>
+    <string name="developer">Fadhlan Sulistiyo Hidayat</string>
+    <string name="github">https://github.com/fadhlansulistiyo"</string>
+    <string name="linkedin">https://www.linkedin.com/in/fadhlansulistiyo</string>
+    <string name="email">fadhlansulistiyo@gmail.com</string>
 </resources>
