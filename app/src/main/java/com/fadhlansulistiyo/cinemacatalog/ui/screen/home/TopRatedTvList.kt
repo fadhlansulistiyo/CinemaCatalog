@@ -36,7 +36,7 @@ fun TopRatedTvList(
                     contentPadding = PaddingValues(horizontal = 8.dp),
                     modifier = modifier
                 ) {
-                    items(tvShows) { tv ->
+                    items(tvShows, key = { it.id }) { tv ->
                         TopRatedTvItem(
                             tv = tv,
                             modifier = Modifier

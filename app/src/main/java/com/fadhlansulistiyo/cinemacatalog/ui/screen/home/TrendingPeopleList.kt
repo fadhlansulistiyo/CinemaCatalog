@@ -36,7 +36,7 @@ fun TrendingPeopleList(
                     contentPadding = PaddingValues(horizontal = 8.dp),
                     modifier = modifier
                 ) {
-                    items(trendingPeople) { people ->
+                    items(trendingPeople, key = { it.id }) { people ->
                         TrendingPeopleItem(
                             people = people,
                             modifier = Modifier

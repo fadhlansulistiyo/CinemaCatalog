@@ -1,7 +1,6 @@
 package com.fadhlansulistiyo.cinemacatalog.ui.screen.watchlist
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Tab

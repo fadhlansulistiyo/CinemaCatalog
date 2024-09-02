@@ -27,7 +27,7 @@ fun WatchlistMovieTab(
             verticalArrangement = Arrangement.spacedBy(12.dp),
             contentPadding = PaddingValues(12.dp),
         ) {
-            items(movies) { movie ->
+            items(movies, key = { it.id }) { movie ->
                 WatchlistMovieItem(
                     movies = movie,
                     modifier = Modifier
@@ -55,7 +55,7 @@ fun WatchlistTvTab(
             contentPadding = PaddingValues(12.dp),
             modifier = Modifier
         ) {
-            items(tvShows) { tvShow ->
+            items(tvShows, key = { it.id }) { tvShow ->
                 WatchlistTvItem(
                     tvShow = tvShow,
                     modifier = Modifier

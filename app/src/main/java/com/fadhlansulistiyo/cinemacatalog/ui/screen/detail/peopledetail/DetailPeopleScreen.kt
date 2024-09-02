@@ -151,7 +151,7 @@ fun DetailPeopleContent(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 val movieList = detailPeople.credits
-                items(movieList.size) { index ->
+                items(movieList.size, key = { index -> movieList[index].id }) { index ->
                     val item = movieList[index]
                     MediaItem(
                         imageUrl = "$IMAGE_URL${item.posterPath}",

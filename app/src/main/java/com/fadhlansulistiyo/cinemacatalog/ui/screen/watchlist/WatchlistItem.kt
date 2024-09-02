@@ -1,4 +1,4 @@
-package com.fadhlansulistiyo.cinemacatalog.ui.components
+package com.fadhlansulistiyo.cinemacatalog.ui.screen.watchlist
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -23,6 +23,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.fadhlansulistiyo.cinemacatalog.R
+import com.fadhlansulistiyo.cinemacatalog.ui.components.loadImagePainter
 
 @Composable
 fun WatchlistItem(

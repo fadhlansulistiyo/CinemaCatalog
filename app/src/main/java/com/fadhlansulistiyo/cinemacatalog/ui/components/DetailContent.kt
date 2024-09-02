@@ -226,7 +226,7 @@ fun DetailContent(
                     contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    items(castList.size) { index ->
+                    items(castList.size, key = { index -> castList[index].id }) { index ->
                         val cast = castList[index]
                         CastList(
                             name = cast.name,

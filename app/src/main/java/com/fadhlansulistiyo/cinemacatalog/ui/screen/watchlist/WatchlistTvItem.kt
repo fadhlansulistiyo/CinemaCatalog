@@ -5,7 +5,6 @@ import androidx.compose.ui.Modifier
 import com.fadhlansulistiyo.cinemacatalog.core.domain.model.WatchlistTv
 import com.fadhlansulistiyo.cinemacatalog.core.utils.Constants.IMAGE_URL_ORIGINAL
 import com.fadhlansulistiyo.cinemacatalog.core.utils.toVoteAverageFormat
-import com.fadhlansulistiyo.cinemacatalog.ui.components.WatchlistItem
 
 @Composable
 fun WatchlistTvItem(
