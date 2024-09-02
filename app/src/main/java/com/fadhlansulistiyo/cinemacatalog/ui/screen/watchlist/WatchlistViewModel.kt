@@ -19,8 +19,10 @@ class WatchlistViewModel @Inject constructor(
 ) : ViewModel() {
 
     val movieWatchlist: StateFlow<List<WatchlistMovie>> =
-        watchListMovieUseCase.getAllWatchlist().stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
+        watchListMovieUseCase.getAllWatchlist()
+            .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
     val tvWatchlist: StateFlow<List<WatchlistTv>> =
-        watchListTvUseCase.getAllWatchlist().stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
+        watchListTvUseCase.getAllWatchlist()
+            .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 }

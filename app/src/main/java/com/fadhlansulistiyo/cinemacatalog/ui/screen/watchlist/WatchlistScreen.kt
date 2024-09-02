@@ -22,7 +22,10 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun WatchlistScreen(
-    viewModel: WatchlistViewModel = hiltViewModel()
+    modifier: Modifier = Modifier,
+    viewModel: WatchlistViewModel = hiltViewModel(),
+    navigateToMovieDetail: (Int) -> Unit,
+    navigateToTvDetail: (Int) -> Unit,
 ) {
     val movieWatchlist by viewModel.movieWatchlist.collectAsState(initial = emptyList())
     val tvWatchlist by viewModel.tvWatchlist.collectAsState(initial = emptyList())
@@ -56,8 +59,14 @@ fun WatchlistScreen(
                 .wrapContentHeight()
         ) { page ->
             when (page) {
-                0 -> WatchlistMovieTab(movies = movieWatchlist)
-                1 -> WatchlistTvTab(tvShows = tvWatchlist)
+                0 -> WatchlistMovieTab(
+                    movies = movieWatchlist,
+                    navigateToMovieDetail = navigateToMovieDetail
+                )
+                1 -> WatchlistTvTab(
+                    tvShows = tvWatchlist,
+                    navigateToTvDetail = navigateToTvDetail
+                )
             }
         }
     }

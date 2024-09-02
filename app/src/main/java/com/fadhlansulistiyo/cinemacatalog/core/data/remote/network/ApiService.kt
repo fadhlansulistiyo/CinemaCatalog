@@ -4,6 +4,7 @@ import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.DetailMovieDTO
 import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.DetailPeopleDTO
 import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.DetailTvDTO
 import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.ListMovieDTO
+import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.ListMultiSearchDTO
 import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.ListPeopleDTO
 import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.ListTvDTO
 import com.fadhlansulistiyo.cinemacatalog.core.data.remote.dto.MovieCreditsDTO
@@ -55,12 +56,10 @@ interface ApiService {
         @Path("person_id") personId: Int
     ): PersonMultiCreditsDTO
 
-    /*
     @GET("search/multi")
     suspend fun getMultiSearch(
         @Query("query") query: String,
         @Query("page") page: Int = 0,
         @Query("language") language: String = "en"
-    ): ListMultiSearchResponse
-    */
+    ): ListMultiSearchDTO
 }

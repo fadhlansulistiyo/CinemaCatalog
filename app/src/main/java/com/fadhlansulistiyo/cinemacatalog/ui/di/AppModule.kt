@@ -4,6 +4,8 @@ import com.fadhlansulistiyo.cinemacatalog.core.domain.usecase.MovieInteractor
 import com.fadhlansulistiyo.cinemacatalog.core.domain.usecase.MovieUseCase
 import com.fadhlansulistiyo.cinemacatalog.core.domain.usecase.PeopleInteractor
 import com.fadhlansulistiyo.cinemacatalog.core.domain.usecase.PeopleUseCase
+import com.fadhlansulistiyo.cinemacatalog.core.domain.usecase.SearchInteractor
+import com.fadhlansulistiyo.cinemacatalog.core.domain.usecase.SearchUseCase
 import com.fadhlansulistiyo.cinemacatalog.core.domain.usecase.TvInteractor
 import com.fadhlansulistiyo.cinemacatalog.core.domain.usecase.TvUseCase
 import com.fadhlansulistiyo.cinemacatalog.core.domain.usecase.WatchlistMovieInteractor
@@ -39,4 +41,8 @@ abstract class AppModule {
     @Binds
     @ViewModelScoped
     abstract fun provideWatchlistTvUseCase(watchlistInteractor: WatchlistTvInteractor): WatchlistTvUseCase
+
+    @Binds
+    @ViewModelScoped
+    abstract fun provideSearchUseCase(searchInteractor: SearchInteractor): SearchUseCase
 }

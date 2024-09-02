@@ -21,6 +21,7 @@ import com.fadhlansulistiyo.cinemacatalog.ui.screen.home.HomeScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.navigation.Screen
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.peopledetail.DetailPeopleScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.tvdetail.DetailTvScreen
+import com.fadhlansulistiyo.cinemacatalog.ui.screen.explore.ExploreScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.watchlist.WatchlistScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.theme.CinemaCatalogTheme
 
@@ -39,6 +40,10 @@ fun CinLogApp(
                 currentRoute != Screen.DetailMovie.route
                 && currentRoute != Screen.DetailTv.route
                 && currentRoute != Screen.DetailPeople.route
+                && currentRoute != Screen.Explore.route
+                && currentRoute != Screen.Watchlist.route
+                && currentRoute != Screen.Profile.route
+
             ) {
                 HomeTopAppBar()
             }
@@ -73,10 +78,24 @@ fun CinLogApp(
                 )
             }
             composable(Screen.Explore.route) {
-                Text(text = "Explore Screen")
+                ExploreScreen(
+                    navigateToMovieDetail = { movieId ->
+                        navController.navigate(Screen.DetailMovie.createRoute(movieId))
+                    },
+                    navigateToTvDetail = { tvId ->
+                        navController.navigate(Screen.DetailTv.createRoute(tvId))
+                    }
+                )
             }
             composable(Screen.Watchlist.route) {
-                WatchlistScreen()
+                WatchlistScreen(
+                    navigateToMovieDetail = { movieId ->
+                        navController.navigate(Screen.DetailMovie.createRoute(movieId))
+                    },
+                    navigateToTvDetail = { tvId ->
+                        navController.navigate(Screen.DetailTv.createRoute(tvId))
+                    }
+                )
             }
             composable(Screen.Profile.route) {
                 Text(text = "Profile Screen")

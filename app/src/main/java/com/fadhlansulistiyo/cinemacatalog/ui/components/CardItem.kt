@@ -42,13 +42,13 @@ fun MediaItem(
 ) {
     Column(
         modifier = modifier
-            .width(posterWidth) // Set the width of the Column to the poster width
+            .width(posterWidth)
     ) {
         // Poster Image
         Card(
             shape = MaterialTheme.shapes.medium,
             modifier = Modifier
-                .fillMaxWidth() // Ensure the Card takes the full width of the Column
+                .fillMaxWidth()
                 .height(posterHeight)
         ) {
             Image(
@@ -69,7 +69,7 @@ fun MediaItem(
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier
-                .fillMaxWidth() // Ensure the title takes the full width of the Column
+                .fillMaxWidth()
                 .padding(start = 4.dp, bottom = if (showRating) 0.dp else 16.dp)
         )
 

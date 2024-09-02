@@ -65,7 +65,7 @@ fun WatchlistItem(
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier
-                .fillMaxWidth() // Ensure the title takes the full width of the Column
+                .fillMaxWidth()
                 .padding(start = 4.dp)
         )
         Row(
