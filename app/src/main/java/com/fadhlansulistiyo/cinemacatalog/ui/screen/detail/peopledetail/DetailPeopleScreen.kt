@@ -4,7 +4,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -158,7 +160,9 @@ fun DetailPeopleContent(
                         imageUrl = "$IMAGE_URL${item.posterPath}",
                         title = item.title,
                         showRating = true,
-                        rating = item.voteAverage.toVoteAverageFormat(1)
+                        rating = item.voteAverage.toVoteAverageFormat(1),
+                        posterWidth = 135.dp,
+                        posterHeight = 200.dp
                     )
                 }
             }

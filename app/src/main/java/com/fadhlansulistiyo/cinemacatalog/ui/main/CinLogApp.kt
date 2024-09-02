@@ -21,6 +21,7 @@ import com.fadhlansulistiyo.cinemacatalog.ui.screen.home.HomeScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.navigation.Screen
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.peopledetail.DetailPeopleScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.screen.detail.tvdetail.DetailTvScreen
+import com.fadhlansulistiyo.cinemacatalog.ui.screen.watchlist.WatchlistScreen
 import com.fadhlansulistiyo.cinemacatalog.ui.theme.CinemaCatalogTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -75,7 +76,7 @@ fun CinLogApp(
                 Text(text = "Explore Screen")
             }
             composable(Screen.Watchlist.route) {
-                Text(text = "Watchlist Screen")
+                WatchlistScreen()
             }
             composable(Screen.Profile.route) {
                 Text(text = "Profile Screen")

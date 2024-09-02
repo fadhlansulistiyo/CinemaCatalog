@@ -111,6 +111,8 @@ dependencies {
 
     // viewPager2
     implementation(libs.androidx.viewpager2)
+    implementation(libs.accompanist.pager)
+    implementation(libs.accompanist.pager.indicators)
 
     // paging
     implementation(libs.androidx.paging.runtime.ktx)
