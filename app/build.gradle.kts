@@ -78,6 +78,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.compose.animation)
+    implementation(libs.androidx.animation.core)
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.androidx.paging.compose)
     androidTestImplementation(platform(libs.androidx.compose.bom))
